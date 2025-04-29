@@ -1,1 +1,24 @@
 name: GitHub Actions Demo
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '15 6 * * 0' # Every Sunday at 6:15 UTC
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy application
+      run: echo "Deploying application..."
